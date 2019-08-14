@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+      <AuIt_MAdmin>
+        <active>true</active>
+        <codePool>local</codePool>
+		<depends>
+		</depends>
+      </AuIt_MAdmin>
+    </modules>
+</config>

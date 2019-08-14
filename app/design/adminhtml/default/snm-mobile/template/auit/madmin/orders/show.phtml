@@ -1,0 +1,78 @@
+<?php
+	/* @var $_order Mage_Sales_Model_Order */
+	$_order = $this->getOrder();
+	$shelper=$this->helper('adminhtml/sales');
+	$orderAdminDate = $this->formatDate($_order->getCreatedAtDate(), 'medium', true);
+
+?>
+<?php
+	$name = '';
+	$action = Mage::app()->getFrontController()->getAction();
+    if ($action) {
+     	$name =$action->getFullActionName();
+    }
+?>
+
+<div data-role="page"  id="<?php echo $name;?>">
+
+<div data-role="header" data-position="fixed" >
+	<a data-role="button" data-rel="back" data-icon="back"><?php echo $this->__('Back')?></a>
+
+
+	<h1><?php echo Mage::helper('sales')->__('Order # %s', $_order->getRealOrderId()) ?></h1>
+  	<div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+</div>
+
+<div data-role="content"  data-iscroll="enable" >
+
+	<div class="content-primary auit-order-item">
+	<?php if (  $_order ) : ?>
+		<h3><span class="date"><?php echo $orderAdminDate;?></span><?php echo $shelper->displayPrices($_order,$_order->getGrandTotal(),$_order->getGrandTotal());?></h3>
+		<p><?php echo $this->getInfo($_order);?></p>
+
+		<?php $_items = $_order->getItemsCollection();?>
+
+		<ul data-role="listview"  data-theme="d" data-inset="true" >
+			<?php
+			$i=0;
+			for ($x=0; $x < 1; $x++)
+				foreach ($_items as $_item):?> <?php if ($_item->getParentItem()) continue; else $i++;?>
+				<li>
+					<h3>
+						<?php echo $_item->getName()?>
+						<?php echo $this->__(' (%d / %d)',$i,count($_items));?>
+					</h3>
+					<p><?php echo $this->htmlEscape($_item->getDescription()) ?></p>
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+						<?php if ( $imageUrl = $this->getProductImg($_item) ) :?>
+							<img class="p-image" src="<?php echo $imageUrl?>" />
+						<?php endif;?>
+						</div>
+						<div class="ui-block-b">
+							<h4><?php echo $this->__('SKU')?></h4>
+							<p><?php echo $_item->getSku();?></p>
+							<h4><?php echo $this->__('Price')?></h4>
+							<p><?php echo $shelper->displayPrices($_order,$_item->getData('row_total_incl_tax'), $_item->getData('row_total_incl_tax'));?></p>
+							<br/>
+   							<?php foreach ($this->getOrderOptions($_item) as $_option): ?>
+      							<h4><?php echo $_option['label'] ?></h4>
+					            <p class="auit-text-break">
+					            <?php if (isset($_option['custom_view']) && $_option['custom_view']): ?>
+					               <?php echo $_option['value']; ?>
+					            <?php else: ?>
+					                <?php echo $_option['value']; ?>
+					            <?php endif; ?>
+					            </p>
+					        <?php endforeach; ?>
+
+
+						</div>
+					</div>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+		<?php endif; ?>
+	</div>
+</div>
+</div>

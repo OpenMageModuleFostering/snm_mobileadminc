@@ -1,0 +1,60 @@
+<?php
+?>
+<div data-role="content"  data-iscroll  >
+	<?php if ( $product  = $this->getProduct() ) :?>
+		<?php
+		/* @var $product Mage_Catalog_Model_Product */
+		?>
+
+		<form action="<?php echo $this->getUrl('*/*/save');?>" method="POST" class="ui-body ui-body-a ui-corner-all">
+
+			<?php if ( $product->getStockItem()->getManageStock() && !$product->isComposite()) :?>
+			<h2><?php echo Mage::helper('catalog')->__('Inventory') ?></h2>
+			<div data-role="fieldcontain">
+				<label for="inventory_qty"><?php echo Mage::helper('catalog')->__('Qty') ?></label>
+                <input type="text" id="inventory_qty" name="product[stock_data][qty]" value="<?php echo $this->getStockFieldValue('qty')*1 ?>" />
+                <input type="hidden" id="original_inventory_qty" name="product[stock_data][original_inventory_qty]" value="<?php echo $this->getStockFieldValue('qty')*1 ?>"/>
+            </div>
+			<div data-role="fieldcontain">
+				<label for="inventory_stock_availability"><?php echo Mage::helper('catalog')->__('Stock Availability') ?></label>
+				<select id="inventory_stock_availability" name="product[stock_data][is_in_stock]" class="select" >
+		            <?php foreach ($this->getStockOption() as $option): ?>
+		                <?php $_selected = ($option['value'] == $this->getStockFieldValue('is_in_stock')) ? 'selected="selected"' : '' ?>
+		                <option value="<?php echo $option['value'] ?>" <?php echo $_selected ?>><?php echo $option['label'] ?></option>
+		            <?php endforeach; ?>
+	            </select>
+			</div>
+			<?php endif;?>
+			<br/>
+			<div data-role="fieldcontain">
+				<label for="product[price]"><?php echo $this->__('Price') ?></label>
+				<input type="text" name="product[price]" id="product[price]" value="<?php echo sprintf("%.2f",Mage::app()->getStore()->roundPrice($product->getFinalPrice()));?>"/>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="product[name]"><?php echo $this->__('Name') ?></label>
+				<input type="text" name="product[name]" id="product[name]" value="<?php echo $product->getName();?>"/>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="product[sku]"><?php echo $this->__('SKU') ?></label>
+				<input type="text" name="product[sku]" id="product[sku]" value="<?php echo $product->getSku();?>"/>
+			</div>
+			<div class="ui-block-b"><button type="submit" data-theme="a"><?php echo $this->__('Save') ?></button></div>
+			<input type="hidden" name="mode" value="update"/>
+			<input type="hidden" name="product_id" value="<?php echo $product->getId()?>"/>
+			<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey()?>"/>
+		</form>
+		<br/><br/>
+	<?php endif;?>
+
+	<form action="<?php echo $this->getUrl('mobile_admin/stock/search');?>" method="POST" class="ui-body ui-body-b ui-corner-all">
+		<h2><?php echo Mage::helper('catalog')->__('Search') ?></h2>
+    	<div data-role="fieldcontain">
+           	<label for="searchvalue"><?php echo Mage::helper('adminhtml')->__('Filter Attribute: %s (see config)',Mage::getStoreConfig('auit_madmin/stock/attribute')) ?></label>
+           	<input type="text" id="searchvalue" name="searchvalue" value="" />
+
+        </div>
+
+			<input type="submit" data-role="button" data-inline="true" data-theme="b"  value="<?php echo Mage::helper('adminhtml')->__('Search') ?>"/>
+			<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey()?>"/>
+    </form>
+</div>

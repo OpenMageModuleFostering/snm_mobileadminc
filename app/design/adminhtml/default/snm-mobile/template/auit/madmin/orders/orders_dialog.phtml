@@ -1,0 +1,15 @@
+<?php
+	$collection = $this->getOrderCollection();
+?>
+<?php  if ($collection): ?>
+	<?php foreach ( $collection as $idx => $_order ):?>
+		<div data-role="page" id="addr<?php echo $_order->getId()?>" data-theme="b">
+			<div data-role="header">
+				<h1><?php echo Mage::helper('adminhtml')->__('Billingaddress') ?></h1>
+			</div>
+			<div data-role="content" data-inset="true">
+				<?php echo $_order->getBillingAddress()->getFormated(true) ?>
+			</div>
+		</div>
+   <?php endforeach;?>
+<?php  endif; ?>

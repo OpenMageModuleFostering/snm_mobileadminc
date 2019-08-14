@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<history>
+	<version>
+		<number>1.6.0</number>
+		<date>2012-07-03</date>
+		<channel>mobileAdmin</channel>
+		<comment></comment>
+		<features><![CDATA[
+		Initial
+		]]></features>
+		<fixes><![CDATA[]]></fixes>
+	</version>
+
+</history>

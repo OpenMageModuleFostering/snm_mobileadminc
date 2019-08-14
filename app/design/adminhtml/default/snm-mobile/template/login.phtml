@@ -1,0 +1,64 @@
+<?php
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="apple-touch-icon" href="<?php echo  $this->getSkinUrl('images/home60.png') ?>" />
+	<link rel="icon" href="<?php echo $this->getSkinUrl('images/home.png') ?>" type="image/x-icon"/>
+	<link rel="shortcut icon" href="<?php echo $this->getSkinUrl('images/home.png') ?>" type="image/x-icon"/>
+<?php
+		$head = $this->getChild('head');
+		if ( $head)
+		{
+			echo $head->toHtml();
+
+		} else {
+?>
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->getSkinUrl('jquery.mobile-1.1.0.min.css') ?>" media="all" />
+    <?php /*
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->getSkinUrl('jquery.mobile.flip.css') ?>" media="all" />
+*/?>
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->getSkinUrl('iscrollview/jquery.mobile.iscrollview.css') ?>" media="all" />
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->getSkinUrl('iscrollview/jquery.mobile.iscrollview-pull.css') ?>" media="all" />
+
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->getSkinUrl('style.css') ?>" media="all" />
+
+
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery-1.7.2.min.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.mobile-1.1.0-patched-listview.min.js') ?>"></script>
+
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('iscrollview/iscroll.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('iscrollview/jquery.mobile.iscrollview.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('auit/mobile.pull.orders.js') ?>"></script>
+
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/app.js') ?>"></script>
+
+
+<?php	}
+   ?>
+</head>
+
+<body>
+<div data-role=page id="home" data-theme=b>
+  <div data-role=header data-position=fixed>
+	  <h1><?php echo $this->__('Magento Admin')?></h1>
+	  <a data-ajax="false" data-rel="external" class="ui-btn-right" href="<?php echo $this->getUrl('mobile_admin/index/classic')?>"  data-theme="e"><?php echo $this->__('Classic') ?></a>
+  </div>
+  <div data-role=content >
+	<div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+	<form action="<?php echo $this->getUrl('mobile_admin/index/index');?>" method="POST" >
+    	<fieldset>
+           	<label for="username"><?php echo Mage::helper('adminhtml')->__('User Name:') ?></label>
+           	<input type="text" id="username" name="login[username]" value="" />
+			<label for="login"><?php echo Mage::helper('adminhtml')->__('Password:') ?></label>
+			<input type="password" id="login" name="login[password]" class="required-entry input-text" value="" />
+			<input type="submit" data-role="button" data-inline="true" data-theme="b"  value="<?php echo Mage::helper('adminhtml')->__('Login') ?>"/>
+			<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey()?>"/>
+		</fieldset>
+    </form>
+  </div>
+  <div data-role=footer data-position=fixed>
+    <h1 ><a  href="http://www.snm-portal.com"><img style="max-height:3em;vertical-align: middle;" src="<?php echo $this->getSkinUrl('images/logo2.png')?>"/><?php echo $this->__('powered by SNM-Portal.com')?></a></h1>
+  </div>
+</div>

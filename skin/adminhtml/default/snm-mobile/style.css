@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+body {
+
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  }
+
+.auit-fullpage {padding:0;overflow:hidden;}
+ul.auit-fullpage > li {height:100%;overflow:hidden;}
+
+.p-image {max-width:100%;}
+.auit-order-item .date {font-size:0.8em}
+.auit-order-item h3 .price {float:right;}
+.auit-text-break{text-overflow: none;
+    white-space: normal;}
+    /** dasboard */
+.grid table {width:100%;}
+.messages ul,.messages ol { list-style:none; margin:0; padding:0;}

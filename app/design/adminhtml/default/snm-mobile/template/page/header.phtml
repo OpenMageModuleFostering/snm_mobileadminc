@@ -1,0 +1,6 @@
+<div data-role="header" data-position="fixed" >
+  	<a href="<?php echo $this->getUrl('adminhtml/dashboard/index')?>" data-icon="home" data-iconpos="notext"	title="Home">Home</a>
+	  <h1><?php echo $this->__('Magento Admin')?></h1>
+	<a class="ui-btn-right" href="<?php echo $this->getUrl('mobile_admin/index/logout')?>"  ><?php echo $this->__('Log Out') ?></a>
+	<div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+</div>

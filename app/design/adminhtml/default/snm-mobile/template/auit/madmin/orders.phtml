@@ -1,0 +1,104 @@
+<?php
+//data-flip-show-pager="true" data-flip-forward-dir="btot" data-flip-loop="true" data-flip-effect="slide"
+//data-flip-height="200px"
+	$collection = $this->getOrderCollection();
+	$baseCurrencyCode = Mage::app()->getStore((int)$this->getParam('store'))->getBaseCurrencyCode();
+	$shelper=$this->helper('adminhtml/sales');
+	$url=$this->getUrl('auit_madmin/orders/next');
+?>
+
+<div data-role=content  data-iscroll class="pull-orders-page" data-auit-url="<?php echo $url;?>" >
+<?php  if ( $collection): ?>
+	<div class="content-primary">
+		<ul data-role="listview"  data-theme="d"  data-split-iconXXXXX="arrow-r" >
+			<?php echo $this->getChildHtml('orders.items');?>
+		</ul>
+ 		<div class="iscroll-pullup">
+          <span class="iscroll-pull-icon"></span>
+          <span
+            data-iscroll-pulled-text="<?php echo $this->__('Let go');?>"
+            data-iscroll-loading-text="<?php echo $this->__('Please wait...');?>"
+            class="iscroll-pull-label" ><?php echo $this->__('Pull up for next orders');?></span>
+        </div>
+
+	</div>
+<?php  endif; ?>
+</div>
+
+<?php /*
+					<div class="ui-grid-a">
+			            <div class="ui-block-a"><?php echo $this->__('Sku')?></div>
+						<div class="ui-block-b"><?php echo $_item->getSku()?></div>
+			            	<div class="ui-block-a"><?php echo $this->__('Name')?></div>
+							<div class="ui-block-b"><?php echo $_item->getName()?></div>
+
+							<div class="ui-block-a"><?php echo $this->__('Qty')?></div>
+							<div class="ui-block-b"><?php echo $_item->getQtyOrdered()?></div>
+							<div class="ui-block-a"><?php echo $this->__('Price')?></div>
+							<div class="ui-block-b"><?php echo $shelper->displayPrices($_order,$_item->getData('row_total_incl_tax'), $_item->getData('row_total_incl_tax')) ?></div>
+				    </div>
+
+
+			</ul>
+
+
+
+
+<div class="page">
+	   	<h3><?php echo Mage::helper('sales')->__('Order # %s', $_order->getRealOrderId()) ?></h3>
+   		<div class="article-list"  data-auit-swipe="enable">
+			<div class="article-list-container"  >
+				<?php $_items = $_order->getItemsCollection() ?>
+		        <?php
+		        $i=0;
+		        if ( 1)
+		        for ($x=0; $x < 10; $x++)
+		        foreach ($_items as $_item):?>
+		        <?php if ($_item->getParentItem()) continue; else $i++;?>
+
+				<div class="item">
+			        <?php if ( $imageUrl = $this->getProductImg($_item) ) :?>
+			        	<img src="<?php echo $imageUrl?>"/>
+			        <?php endif;?>
+			        <h4><?php echo $_item->getName()?> <?php echo $this->__(' (%d / %d)',$i,count($_items));?></h4>
+
+					<div class="ui-grid-a">
+			            <div class="ui-block-a"><?php echo $this->__('Sku')?></div>
+						<div class="ui-block-b"><?php echo $_item->getSku()?></div>
+			            	<div class="ui-block-a"><?php echo $this->__('Name')?></div>
+							<div class="ui-block-b"><?php echo $_item->getName()?></div>
+
+							<div class="ui-block-a"><?php echo $this->__('Qty')?></div>
+							<div class="ui-block-b"><?php echo $_item->getQtyOrdered()?></div>
+							<div class="ui-block-a"><?php echo $this->__('Price')?></div>
+							<div class="ui-block-b"><?php echo $shelper->displayPrices($_order,$_item->getData('row_total_incl_tax'), $_item->getData('row_total_incl_tax')) ?></div>
+				    </div>
+
+				</div>
+			    <?php endforeach; ?>
+	   		</div>
+   		</div>
+		<br clear="all"/>
+   		<div class="head">
+
+	   			<span style="font-size:0.6em"><br/>(<?php echo $_email ?>)</span>
+
+			<div class="ui-grid-a">
+				<div class="ui-block-a bold"><?php echo $this->__('Order Status')?></div>
+				<div class="ui-block-b"><?php echo $orderAdminDate;?></div>
+				<div class="ui-block-a bold"><?php echo $this->__('Order Status')?></div>
+				<div class="ui-block-b"><?php echo $_order->getStatusLabel();?></div>
+				<div class="ui-block-a bold"><?php echo $this->__('Grand Total')?></div>
+				<div class="ui-block-b"><?php echo $shelper->displayPrices($_order,$_order->getGrandTotal(),$_order->getGrandTotal());?></div>
+				<div class="ui-block-a bold"><?php echo Mage::helper('sales')->__('Billing Address') ?></div>
+				<div class="ui-block-b"><a href="#addr<?php echo $_order->getId()?>" data-rel="dialog"  data-inline="true" data-role="button"><?php echo $this->__('Open')?></a></div>
+			</div>
+		</div>
+
+   </div>
+   <?php endforeach;?>
+</div>
+
+
+</div>
+ */?>

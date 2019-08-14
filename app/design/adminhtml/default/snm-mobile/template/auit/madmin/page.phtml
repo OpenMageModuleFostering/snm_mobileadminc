@@ -1,0 +1,30 @@
+<?php
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php echo $this->getChildHtml('head') ?>
+</head>
+<body>
+
+<?php
+
+	$name = '';
+	$action = Mage::app()->getFrontController()->getAction();
+    if ($action) {
+     	$name =$action->getFullActionName();
+
+    }
+?>
+
+<div data-role="page" id="<?php echo $name;?>" <?php if ( $this->getDataDomCache()) echo 'data-dom-cache="'.$this->getDataDomCache().'"';?>>
+	<?php echo $this->getChildHtml('header') ?>
+	<?php echo $this->getChildHtml('content') ?>
+</div>
+<?php echo $this->getChildHtml('before_body_end')
+
+
+?>
+  </body>
+</html>

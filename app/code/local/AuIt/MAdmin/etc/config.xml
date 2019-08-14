@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<AuIt_MAdmin>
+			<version>1.6.0</version>
+		</AuIt_MAdmin>
+	</modules>
+
+	<global>
+		<models>
+			<auit_madmin>
+				<class>AuIt_MAdmin_Model</class>
+			</auit_madmin>
+		</models>
+		<blocks>
+			<auit_madmin>
+				<class>AuIt_MAdmin_Block</class>
+			</auit_madmin>
+		</blocks>
+		<helpers>
+			<auit_madmin>
+				<class>AuIt_MAdmin_Helper</class>
+			</auit_madmin>
+		</helpers>
+	</global>
+	<admin>
+		<routers>
+			<auit_madmin>
+				<use>admin</use>
+				<args>
+					<module>AuIt_MAdmin</module>
+					<frontName>mobile_admin</frontName>
+				</args>
+			</auit_madmin>
+		</routers>
+
+	</admin>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<AuIt_MAdmin>
+					<files>
+						<default>AuIt_MAdmin.csv</default>
+					</files>
+				</AuIt_MAdmin>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<auit_madmin>
+					<file>auit_madmin.xml</file>
+				</auit_madmin>
+			</updates>
+		</layout>
+
+
+
+	</adminhtml>
+	<global>
+		<events>
+            <adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <auit_madmin>
+                        <class>auit_madmin/observer</class>
+                        <method>predispatch_start</method>
+                    </auit_madmin>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+		</events>
+
+	</global>
+	<default>
+		<auit_madmin>
+			<stock>
+				<attribute>sku</attribute>
+			</stock>
+		</auit_madmin>
+	</default>
+</config>

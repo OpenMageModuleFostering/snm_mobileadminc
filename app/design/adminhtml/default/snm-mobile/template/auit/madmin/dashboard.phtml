@@ -1,0 +1,32 @@
+<?php
+?>
+
+
+<div data-role=content data-iscroll>
+<div data-role="collapsible-set">
+
+	<div data-role="collapsible" data-collapsed="false">
+		<h3><?php echo $this->__('Dashboard') ?></h3>
+		<p>
+			<?php echo $this->getChildHtml('sales') ?>
+		</p>
+	</div>
+
+	<div data-role="collapsible">
+	<h3><?php echo $this->__('Last 5 Orders') ?></h3>
+	<p><?php echo $this->getChildHtml('lastOrders'); ?></p>
+	</div>
+
+	<div data-role="collapsible">
+	<h3><?php echo $this->__('Last 5 Search Terms') ?></h3>
+	<p><?php echo $this->getChildHtml('lastSearches'); ?></p>
+	</div>
+
+	<div data-role="collapsible">
+	<h3><?php echo $this->__('Top 5 Search Terms') ?></h3>
+	<p><?php echo $this->getChildHtml('topSearches'); ?></p>
+	</div>
+
+</div>
+	<?php /*echo $this->getChildHtml('store_switcher') */?>
+</div>

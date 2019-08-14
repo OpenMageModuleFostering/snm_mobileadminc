@@ -1,0 +1,70 @@
+<?php
+	$collection = $this->getOrderCollection();
+	$baseCurrencyCode = Mage::app()->getStore((int)$this->getParam('store'))->getBaseCurrencyCode();
+	$shelper=$this->helper('adminhtml/sales');
+?>
+
+			<?php foreach ( $collection as $idx => $_order ):?>
+			<?php
+					/* @var $_order Mage_Sales_Model_Order */
+				$orderAdminDate = $this->formatDate($_order->getCreatedAtDate(), 'medium', true);
+				$orderStoreDate = $this->formatDate($_order->getCreatedAtStoreDate(), 'medium', true);
+				if ($_order->getEmailSent()){
+					$_email = Mage::helper('sales')->__('the order confirmation email was sent');
+				}else{
+					$_email = Mage::helper('sales')->__('the order confirmation email is not sent');
+				}
+			?>
+			<li ><a href="<?php echo $this->getUrl('auit_madmin/orders/items',array('id'=>$_order->getId()));?>"  >
+				<h3><?php echo Mage::helper('sales')->__('Order # %s', $_order->getRealOrderId()) ?></h3>
+				<p ><strong><?php echo $shelper->displayPrices($_order,$_order->getGrandTotal(),$_order->getGrandTotal());?></strong> - <?php echo $orderAdminDate;?></p>
+
+				<p><?php echo $this->getInfo($_order);?></p>
+				</a>
+
+			<?php
+
+			/*
+			 * <a href="#" ></a>
+				<h3><?php echo Mage::helper('sales')->__('Order # %s', $_order->getRealOrderId()) ?>&#160;<span style="font-size:0.8em"><?php echo $orderAdminDate;?></span></h3>
+				<p><?php echo $this->getInfo($_order);?></p>
+
+
+				<?php $_items = $_order->getItemsCollection();?>
+
+				<span class="ui-li-count"><?php echo $shelper->displayPrices($_order,$_order->getGrandTotal(),$_order->getGrandTotal());?></span>
+				*/?>
+
+				<?php /*
+				<ul data-add-back-btn="true"  data-theme="d" data-auit-fullpage="enable" data-list-icon="gear">
+					<li>
+						<div style="overflow:hidden;height:50%" data-auit-swipe="enable">
+											<?php
+			        $i=0;
+			        for ($x=0; $x < 10; $x++)
+			        foreach ($_items as $_item):?>
+			        <?php if ($_item->getParentItem()) continue; else $i++;?>
+			        	<div>
+						<h3><?php echo $_item->getName()?> <?php echo $this->__(' (%d / %d)',$i,count($_items));?></h3>
+						<p>
+				        <?php if ( $imageUrl = $this->getProductImg($_item) ) :?>
+				        	<img src="<?php echo $imageUrl?>"/>
+				        <?php endif;?>
+
+						All your favorites from aarkvarks to zebras.</p>
+						</div>
+					 <?php endforeach; ?>
+
+					 </div>
+
+					</li>
+				</ul>
+				*/?>
+			</li>
+			<?php endforeach; ?>
+<?php
+/*
+<?php echo $this->__('Article');?><?php echo count($_items)?>
+data-iscroll
+*/
+?>

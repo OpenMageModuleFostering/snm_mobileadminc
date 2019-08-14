@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+		<snm >
+            <title>SNM-Portal</title>
+            <sort_order>71</sort_order>
+			<children>
+				<auit_madmin translate="title" module="auit_madmin">
+					<title>SNM Mobile</title>
+				    <sort_order>5</sort_order>
+		            <children>
+						<address translate="title" module="auit_madmin">
+						    <title>Stock</title>
+						    <sort_order>5</sort_order>
+						    <action>auit_madmin/index</action>
+						</address>
+		            </children>
+				</auit_madmin>
+            </children>
+        </snm>
+    </menu>
+    <acl>
+		<resources>
+			<admin>
+				<children>
+					<snm>
+                        <title>SNM-Portal</title>
+                        <sort_order>70</sort_order>
+						<children>
+							<auit_madmin>
+								<title>Mobile</title>
+								<sort_order>40</sort_order>
+								<children>
+									<address translate="title">
+										<title>Stock</title>
+										<sort_order>10</sort_order>
+									</address>
+								</children>
+							</auit_madmin>
+						</children>
+					</snm>
+				</children>
+			</admin>
+		</resources>
+		<resources>
+			<admin>
+				<children>
+					<system>
+                           <children>
+                               <config>
+                                   <children>
+                                       <auit_madmin>
+                                           <title>Admin Mobile</title>
+                                       </auit_madmin>
+                                   </children>
+                               </config>
+                           </children>
+                       </system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+
+</config>

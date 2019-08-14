@@ -1,0 +1,21 @@
+<?php
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php echo $this->getChildHtml('head') ?>
+</head>
+<body>
+<?php
+	$name = '';
+	$action = Mage::app()->getFrontController()->getAction();
+    if ($action) {
+     	$name =$action->getFullActionName();
+    }
+?>
+	<?php echo $this->getChildHtml('content') ?>
+	<?php echo $this->getChildHtml('before_body_end') ?>
+
+</body>
+</html>
